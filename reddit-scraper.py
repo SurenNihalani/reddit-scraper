@@ -8,6 +8,7 @@ import praw
 import pprint
 import signal
 import time
+import MySQLdb as db
 
 
 pp = pprint.PrettyPrinter(indent=4)
@@ -24,10 +25,34 @@ def turn_bot_off_on_ctrl_c(signal, frame):
 signal.signal(signal.SIGINT, turn_bot_off_on_ctrl_c)
 
 
-def insert_post_into_db(url="", author="", score=0, created_time=0, subreddit_url=""):
+def insert_post_into_db(
+        cursor, 
+        url="", 
+        author="", 
+        score=0, 
+        created_time=0, 
+        subreddit_url=""):
     """Stores a hot post into the db for analysis later"""
-    pass
-
+    sql = '''
+        INSERT INTO reddit_hot_posts(
+            url,
+            author, 
+            subreddit_url,
+            created_time,
+            score
+        ) VALUES (
+            %s,
+            %s,
+            %s,
+            %s,
+            %s
+        ) ON DUPLICATE KEY UPDATE
+            score = VALUES(score)
+    '''
+    top = cursor.execute(
+        sql,
+        (url, author, subreddit_url, created_time, score, )
+    )
 
 def run_bot():
     """Runs the bot. Everything you need to know about the bot is in this function"""
@@ -36,7 +61,7 @@ def run_bot():
         client_id='GTlkDtvm2KkPjA',
         client_secret='iJsUT9SQSI4jiIZHZxUtAqQhJ-Q',
         redirect_uri='http://127.0.0.1:5000/')
-    r.login(username="your_id_HERE", password="PUT_YOUR_PASSWORD_HERE")
+    r.login(username="bad_guy_1991", password="qweasd")
 
     subreddits = [
         r.get_subreddit(subreddit_name=sub_reddit_name)
@@ -44,33 +69,55 @@ def run_bot():
 
     last_time_bot_ran = time.time()
 
-    while keep_bot_on:
-        if time.time() - last_time_bot_ran <= 60:
-            time.sleep(1)
-        last_time_bot_ran = time.time()
+    con = db.connect(
+        'localhost', 
+            'redditor', 
+            'qweasd', 
+        'reddit');
 
-        for subreddit in subreddits:
-            # Since every API call is 2 seconds apart
-            # we add every post to the database within API calls
-            for post in subreddit.get_hot(limit=100):
-                if post.is_self:
-                    continue
+    with con:
+        cur = con.cursor()
+        cur.execute('''
+            CREATE TABLE IF NOT EXISTS reddit_hot_posts (
+                url VARCHAR(2000),
+                author VARCHAR(100),
+                subreddit_url VARCHAR(1000),
+                created_time BIGINT,
+                score BIGINT,
+                CONSTRAINT primary_key_post PRIMARY KEY (
+                    url(30), 
+                    author(10), 
+                    subreddit_url(30)
+                )
+            );
+        ''')
+        while keep_bot_on:
+            if time.time() - last_time_bot_ran <= 60:
+                time.sleep(1)
+            last_time_bot_ran = time.time()
+            print time.ctime()
+            for subreddit in subreddits:
+                # Since every API call is 2 seconds apart
+                # we add every post to the database within API calls
+                for post in subreddit.get_hot(limit=100):
+                    if post.is_self:
+                        continue
 
-                insert_post_into_db(
-                    url=post.url,
-                    author=post.author.name,
-                    score=int(post.score),
-                    created_time=int(post.created),
-                    subreddit_url=post.subreddit._url)
-
-                break
-
-        break
+                    insert_post_into_db(
+                        cur,
+                        url=post.url,
+                        author=post.author.name,
+                        score=int(post.score),
+                        created_time=int(post.created),
+                        subreddit_url=post.subreddit._url)
+            cur.execute('''
+                FLUSH TABLES
+            ''')
 
 
 def read_subreddits_to_monitor():
     """Reads the list of all subreddits to monitor"""
-    with open("/Users/sn/Dropbox (Personal)/dev/social_computing/reddit-scraper/subreddits.list") as f:
+    with open("subreddits.list") as f:
         all_subreddits = f.readlines()
         all_subreddits = [subreddit.strip() for subreddit in all_subreddits if subreddit.strip()]
         return all_subreddits
@@ -78,6 +125,5 @@ def read_subreddits_to_monitor():
 
 if __name__ == '__main__':
     run_bot()
-    sql.close()
 
 
