@@ -92,7 +92,7 @@ def run_bot():
             );
         ''')
         while keep_bot_on:
-            if time.time() - last_time_bot_ran <= 60:
+            while time.time() - last_time_bot_ran <= 60:
                 time.sleep(1)
             last_time_bot_ran = time.time()
             print time.ctime()
