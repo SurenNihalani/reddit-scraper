@@ -73,7 +73,8 @@ def run_bot():
         'localhost', 
             'redditor', 
             'qweasd', 
-        'reddit');
+        'reddit',
+        charset='utf8');
 
     with con:
         cur = con.cursor()
