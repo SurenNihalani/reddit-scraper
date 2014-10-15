@@ -9,7 +9,10 @@ import pprint
 import signal
 import time
 import MySQLdb as db
-
+import smtplib
+from smtplib import SMTPException
+import requests
+import sys
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -20,6 +23,24 @@ def turn_bot_off_on_ctrl_c(signal, frame):
     """The bot runs an while True loop. Ctrl c breaks that loop so we can clean up gracefully"""
     global keep_bot_on
     keep_bot_on = False
+
+def send_email(exception):
+    print "exception: ", str(exception)
+    sender = 'from@fromdomain.com'
+    receivers = ['suren.k.n@icloud.com']
+
+    message = """From: From Person <reddit-bot@our-bot>
+To: To Person <to@to.com>
+Subject: error occured in the bot
+
+
+    """ + str(exception)
+
+    try:
+       smtpObj = smtplib.SMTP('localhost')
+       smtpObj.sendmail(sender, receivers, message)         
+    except SMTPException:
+       print "Error: unable to send email"
 
 
 signal.signal(signal.SIGINT, turn_bot_off_on_ctrl_c)
@@ -93,29 +114,34 @@ def run_bot():
             );
         ''')
         while keep_bot_on:
-            while time.time() - last_time_bot_ran <= 60 and keep_bot_on:
+            while time.time() - last_time_bot_ran <= 1 and keep_bot_on:
                 time.sleep(1)
             if not keep_bot_on:
                 break
             last_time_bot_ran = time.time()
             print time.ctime()
             for subreddit in subreddits:
-                # Since every API call is 2 seconds apart
-                # we add every post to the database within API calls
-                for post in subreddit.get_hot(limit=100):
-                    if post.is_self:
-                        continue
+                    # Since every API call is 2 seconds apart
+                    # we add every post to the database within API calls
+                try:
+                    for post in subreddit.get_hot(limit=100):
+                        if post.is_self:
+                            continue
 
-                    insert_post_into_db(
-                        cur,
-                        url=post.url,
-                        author=post.author.name,
-                        score=int(post.score),
-                        created_time=int(post.created),
-                        subreddit_url=post.subreddit._url)
-            cur.execute('''
-                FLUSH TABLES
-            ''')
+                        insert_post_into_db(
+                            cur,
+                            url=post.url,
+                            author=post.author.name,
+                            score=int(post.score),
+                            created_time=int(post.created),
+                            subreddit_url=post.subreddit._url)
+                    cur.execute('''
+                        FLUSH TABLES
+                    ''')
+                except requests.exceptions.HTTPError as ex:
+                    print ex
+                except:
+                    send_email(sys.exc_info()[0])
 
 
 def read_subreddits_to_monitor():
