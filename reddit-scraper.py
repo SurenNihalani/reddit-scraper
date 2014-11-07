@@ -13,6 +13,7 @@ import smtplib
 from smtplib import SMTPException
 import requests
 import sys
+import itertools
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -23,6 +24,7 @@ def turn_bot_off_on_ctrl_c(signal, frame):
     """The bot runs an while True loop. Ctrl c breaks that loop so we can clean up gracefully"""
     global keep_bot_on
     keep_bot_on = False
+
 
 def send_email(exception):
     print "exception: ", str(exception)
@@ -37,21 +39,21 @@ Subject: error occured in the bot
     """ + str(exception)
 
     try:
-       smtpObj = smtplib.SMTP('localhost')
-       smtpObj.sendmail(sender, receivers, message)         
+        smtpObj = smtplib.SMTP('localhost')
+        smtpObj.sendmail(sender, receivers, message)
     except SMTPException:
-       print "Error: unable to send email"
+        print "Error: unable to send email"
 
 
 signal.signal(signal.SIGINT, turn_bot_off_on_ctrl_c)
 
 
 def insert_post_into_db(
-        cursor, 
-        url="", 
-        author="", 
-        score=0, 
-        created_time=0, 
+        cursor,
+        url="",
+        author="",
+        score=0,
+        created_time=0,
         subreddit_url=""):
     """Stores a hot post into the db for analysis later"""
     sql = '''
@@ -75,6 +77,7 @@ def insert_post_into_db(
         (url, author, subreddit_url, created_time, score, )
     )
 
+
 def run_bot():
     """Runs the bot. Everything you need to know about the bot is in this function"""
     r = praw.Reddit('A school project bot to study distribution of links amongst subreddits')
@@ -91,9 +94,9 @@ def run_bot():
     last_time_bot_ran = time.time()
 
     con = db.connect(
-        'localhost', 
-            'redditor', 
-            'qweasd', 
+        'localhost',
+        'redditor',
+        'qweasd',
         'reddit',
         charset='utf8');
 
@@ -121,13 +124,13 @@ def run_bot():
             last_time_bot_ran = time.time()
             print time.ctime()
             for subreddit in subreddits:
-                    # Since every API call is 2 seconds apart
-                    # we add every post to the database within API calls
+                # Since every API call is 2 seconds apart
+                # we add every post to the database within API calls
                 try:
-                    for post in subreddit.get_hot(limit=100):
+                    for post in itertools.chain(subreddit.get_hot(limit=100), subreddit.get_new(limit=100)):
                         if post.is_self:
                             continue
-
+                        print post
                         insert_post_into_db(
                             cur,
                             url=post.url,
