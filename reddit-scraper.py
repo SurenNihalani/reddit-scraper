@@ -86,7 +86,6 @@ def run_bot():
         client_secret='iJsUT9SQSI4jiIZHZxUtAqQhJ-Q',
         redirect_uri='http://127.0.0.1:5000/')
     r.login(username="bad_guy_1991", password="qweasd")
-
     subreddits = [
         r.get_subreddit(subreddit_name=sub_reddit_name)
         for sub_reddit_name in read_subreddits_to_monitor()]
@@ -98,10 +97,13 @@ def run_bot():
         'redditor',
         'qweasd',
         'reddit',
-        charset='utf8');
+        charset='utf8')
 
     with con:
         cur = con.cursor()
+        cur.execute('''
+            DROP TABLE reddit_hot_posts;
+        ''')
         cur.execute('''
             CREATE TABLE IF NOT EXISTS reddit_hot_posts (
                 url VARCHAR(2000),
