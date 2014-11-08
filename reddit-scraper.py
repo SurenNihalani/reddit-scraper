@@ -31,7 +31,7 @@ def turn_bot_off_on_ctrl_c(signal, frame):
 def send_email(exception):
     print "exception: ", str(exception)
     sender = 'from@fromdomain.com'
-    receivers = ['suren.k.n@icloud.com']
+    receivers = ['suren.k.n@icloud.com','khare.ashwini@gmail.com']
 
     message = """From: Social computing  <redditer@reddit>
 To: Les Redditorians
@@ -137,7 +137,7 @@ def run_bot():
                     for post in itertools.chain(subreddit.get_hot(limit=100), subreddit.get_new(limit=100)):
                         if post.is_self:
                             continue
-                        print post
+                        #print post
                         insert_post_into_db(
                             cur,
                             url=post.url,
