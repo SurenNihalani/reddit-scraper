@@ -31,8 +31,8 @@ def send_email(exception):
     sender = 'from@fromdomain.com'
     receivers = ['suren.k.n@icloud.com']
 
-    message = """From: From Person <reddit-bot@our-bot>
-To: To Person <to@to.com>
+    message = """From: Social computing Bot <redditbot@bot>
+To: Les Redditorians
 Subject: error occured in the bot
 
 
