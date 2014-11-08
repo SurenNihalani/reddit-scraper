@@ -14,6 +14,8 @@ from smtplib import SMTPException
 import requests
 import sys
 import itertools
+import traceback
+
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -154,7 +156,7 @@ def run_bot():
                         total_exceptions = 0
                         exceptions_thrown.clear()
 
-                    exception = str(sys.exc_info())
+                    exception = sys.exc_info()[2].format_exc()
                     if exception in exceptions_thrown:
                         continue
                     exceptions_thrown.add(exception)
