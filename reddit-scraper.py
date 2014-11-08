@@ -15,6 +15,8 @@ import requests
 import sys
 import itertools
 
+total_exceptions = 0
+
 pp = pprint.PrettyPrinter(indent=4)
 
 keep_bot_on = True
@@ -118,6 +120,9 @@ def run_bot():
                 )
             );
         ''')
+
+        exceptions_thrown = set()
+
         while keep_bot_on:
             while time.time() - last_time_bot_ran <= 1 and keep_bot_on:
                 time.sleep(1)
@@ -146,7 +151,18 @@ def run_bot():
                 except requests.exceptions.HTTPError as ex:
                     print ex
                 except:
-                    send_email(sys.exc_info()[0])
+                    global total_exceptions
+                    total_exceptions += 1
+
+                    if total_exceptions % 10000 == 0:
+                        total_exceptions = 0
+                        exceptions_thrown.clear()
+
+                    exception = str(sys.exc_info()[0])
+                    if exception in exceptions_thrown:
+                        continue
+                    exceptions_thrown.add(exception)
+                    send_email(exception)
 
 
 def read_subreddits_to_monitor():
