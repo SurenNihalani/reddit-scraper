@@ -122,7 +122,7 @@ def run_bot():
         exceptions_thrown = set()
         total_exceptions = 0
         while keep_bot_on:
-            while time.time() - last_time_bot_ran <= 1 and keep_bot_on:
+            while time.time() - last_time_bot_ran <= 60 and keep_bot_on:
                 time.sleep(1)
             if not keep_bot_on:
                 break
