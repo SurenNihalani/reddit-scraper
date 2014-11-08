@@ -156,7 +156,7 @@ def run_bot():
                         total_exceptions = 0
                         exceptions_thrown.clear()
 
-                    exception = sys.exc_info()[2].format_exc()
+                    exception = traceback.format_tb(sys.exc_info()[2])
                     if exception in exceptions_thrown:
                         continue
                     exceptions_thrown.add(exception)
