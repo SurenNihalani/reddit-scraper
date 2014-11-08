@@ -154,7 +154,7 @@ def run_bot():
                         total_exceptions = 0
                         exceptions_thrown.clear()
 
-                    exception = str(sys.exc_info()[0])
+                    exception = str(sys.exc_info())
                     if exception in exceptions_thrown:
                         continue
                     exceptions_thrown.add(exception)
