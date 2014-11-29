@@ -49,6 +49,9 @@ try:
 
                 line = line.strip()
                 line = line.split()
+                if len(line) != 5:
+                    print "MOTHERFUCKER: ", line
+                    continue
                 link, author, subreddit, time, score = line
 
                 all_items = []
