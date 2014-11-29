@@ -4,7 +4,8 @@ import praw
 import json
 import smtplib
 from smtplib import SMTPException
-
+import traceback
+import sys
 
 def send_email(exception):
     print "exception: ", str(exception)
@@ -72,4 +73,6 @@ try:
 
 
 except:
-    send_email("restart")
+    exception = ''.join(traceback.format_tb(sys.exc_info()[2]))
+    send_email(exception)
+    print exception
