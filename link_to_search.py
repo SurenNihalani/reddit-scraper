@@ -10,7 +10,7 @@ import sys
 def send_email(exception):
     print "exception: ", str(exception)
     sender = 'from@fromdomain.com'
-    receivers = ['suren.k.n@icloud.com']
+    receivers = ['suren.k.n@icloud.com', 'khare.ashwini@gmail.com']
 
     message = """From: Social computing  <redditer@reddit>
 To: Les Redditorians
