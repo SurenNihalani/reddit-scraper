@@ -78,4 +78,5 @@ try:
 except:
     exception = ''.join(traceback.format_tb(sys.exc_info()[2]))
     send_email(exception)
+    print "Records done: ", records_done
     print exception
