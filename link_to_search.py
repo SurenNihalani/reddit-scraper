@@ -30,7 +30,7 @@ def tuple_to_string(t):
 
 index_to_start = 0
 limit = 0
-records_done = 0
+records_done = 600
 
 try:
     with open('data.csv', 'a') as x:
@@ -67,7 +67,7 @@ try:
                     score = item.score
                     subrreddit = item.subreddit
                     all_items.append((author, subreddit, time, score))
-                x.write(tuple_to_string((link, author, subreddit, time, score, json.dumps(all_items))))
+                x.write(tuple_to_string((records_done, link, author, subreddit, time, score, json.dumps(all_items))))
 
                 records_done += 1
                 if records_done % 100 == 0:
@@ -80,3 +80,5 @@ except:
     send_email(exception)
     print "Records done: ", records_done
     print exception
+    print str(sys.exc_info()[0])
+    print str(sys.exc_info()[1])
