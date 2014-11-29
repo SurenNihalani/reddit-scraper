@@ -32,17 +32,18 @@ index_to_start = 0
 records_to_skip = 0
 records_done = 0
 
-try:
-    with open('data.csv', 'a') as x:
-        with open('links.csv', 'r') as f:
-            r = praw.Reddit('A school project bot to study distribution of links amongst subreddits')
-            r.set_oauth_app_info(
-                client_id='GTlkDtvm2KkPjA',
-                client_secret='iJsUT9SQSI4jiIZHZxUtAqQhJ-Q',
-                redirect_uri='http://127.0.0.1:5000/')
-            r.login(username="bad_guy_1991", password="qweasd")
 
-            for line in f:
+with open('data.csv', 'a') as x:
+    with open('links.csv', 'r') as f:
+        r = praw.Reddit('A school project bot to study distribution of links amongst subreddits')
+        r.set_oauth_app_info(
+            client_id='GTlkDtvm2KkPjA',
+            client_secret='iJsUT9SQSI4jiIZHZxUtAqQhJ-Q',
+            redirect_uri='http://127.0.0.1:5000/')
+        r.login(username="bad_guy_1991", password="qweasd")
+
+        for line in f:
+            try:
                 index_to_start += 1
                 if index_to_start <= records_to_skip:
                     continue
@@ -67,18 +68,17 @@ try:
                     score = item.score
                     subrreddit = item.subreddit
                     all_items.append((author, subreddit, time, score))
-                x.write(tuple_to_string((link, author, subreddit, time, score, json.dumps(all_items))))
+                x.write(tuple_to_string((index_to_start, link, author, subreddit, time, score, json.dumps(all_items))))
 
                 records_done += 1
                 if records_done % 100 == 0:
                     x.flush()
                     print "records done: ", records_done
-
-
-except:
-    exception = ''.join(traceback.format_tb(sys.exc_info()[2]))
-    send_email(exception)
-    print "Records done: ", records_done
-    print exception
-    print str(sys.exc_info()[0])
-    print str(sys.exc_info()[1])
+            except:
+                exception = ''.join(traceback.format_tb(sys.exc_info()[2])) + '\n' + str(sys.exc_info()[0]) + '\n line: ', index_to_start
+                exception += '\n' + str(sys.exc_info()[1])
+                send_email(exception)
+                print "Records done: ", records_done
+                print exception
+                print str(sys.exc_info()[0])
+                print str(sys.exc_info()[1])
