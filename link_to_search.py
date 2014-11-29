@@ -7,6 +7,7 @@ from smtplib import SMTPException
 import traceback
 import sys
 
+
 def send_email(exception):
     print "exception: ", str(exception)
     sender = 'from@fromdomain.com'
@@ -25,13 +26,14 @@ Subject: error occured in the process
     except SMTPException:
         print "Error: unable to send email"
 
+
 def tuple_to_string(t):
     return ','.join([str(x) for x in t]) + '\n'
+
 
 index_to_start = 0
 records_to_skip = 0
 records_done = 0
-
 
 with open('data.csv', 'a') as x:
     with open('links.csv', 'r') as f:
@@ -75,8 +77,10 @@ with open('data.csv', 'a') as x:
                     x.flush()
                     print "records done: ", records_done
             except:
-                exception = ''.join(traceback.format_tb(sys.exc_info()[2])) + '\n' + str(sys.exc_info()[0]) + '\n line: ', index_to_start
-                exception += '\n' + str(sys.exc_info()[1])
+                exception = ''.join(traceback.format_tb(sys.exc_info()[2])) + '\n' + str(
+                    sys.exc_info()[0]) + '\n line: ' + str(index_to_start)
+                exception = tuple_to_string(exception)
+                exception = exception + ' ' + '\n' + str(sys.exc_info()[1])
                 send_email(exception)
                 print "Records done: ", records_done
                 print exception
