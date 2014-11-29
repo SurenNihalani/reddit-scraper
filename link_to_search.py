@@ -29,8 +29,8 @@ def tuple_to_string(t):
     return ','.join([str(x) for x in t]) + '\n'
 
 index_to_start = 0
-limit = 0
-records_done = 600
+records_to_skip = 0
+records_done = 0
 
 try:
     with open('data.csv', 'a') as x:
@@ -43,9 +43,9 @@ try:
             r.login(username="bad_guy_1991", password="qweasd")
 
             for line in f:
-                if index_to_start < limit:
-                    continue
                 index_to_start += 1
+                if index_to_start <= records_to_skip:
+                    continue
 
                 line = line.strip()
                 line = line.split()
