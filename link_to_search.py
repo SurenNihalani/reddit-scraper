@@ -77,6 +77,8 @@ with open('data2.csv', 'a') as x:
                     print "records done: ", records_done, " idx: ", index_to_start
 
             except exceptions.AttributeError as e:
+                x.write(tuple_to_string((index_to_start, link, author, subreddit, time, score, json.dumps([]))))
+                x.flush()
                 print link
                 print e
                 print index_to_start
