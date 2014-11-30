@@ -13,10 +13,7 @@ with open('data2.csv', 'r') as f:
         lengths.append(len(line))
 
     c = Counter(lengths)
-    frequencies = Counter(c.values())
 
-
-    lines = frequencies
     x = list(c.elements())
     print x
     bins = [i * 1 for i in range(10)]
