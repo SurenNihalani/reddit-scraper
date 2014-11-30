@@ -40,10 +40,10 @@ def tuple_to_string(t):
 
 
 index_to_start = 0
-records_to_skip = 32291
+records_to_skip = 32244
 records_done = 0
 
-with open('data2.csv', 'a') as x:
+with open('data_suren.csv', 'a') as x:
     with open('links.csv', 'r') as f:
         r = praw.Reddit('A school project bot to study distribution of links amongst subreddits')
         r.set_oauth_app_info(
