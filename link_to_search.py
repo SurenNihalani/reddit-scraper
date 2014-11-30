@@ -74,7 +74,7 @@ with open('data2.csv', 'a') as x:
                 records_done += 1
                 if records_done % 100 == 0:
                     x.flush()
-                    print "records done: ", records_done
+                    print "records done: ", records_done, " idx: ", index_to_start
 
             except exceptions.AttributeError as e:
                 print link
