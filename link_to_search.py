@@ -7,7 +7,9 @@ from smtplib import SMTPException
 import traceback
 import sys
 import exceptions
+import urllib2
 
+my_ip = str(urllib2.urlopen('http://ip.42.pl/raw').read())
 
 def send_email(exception):
     print "exception: ", str(exception)
@@ -87,7 +89,8 @@ with open('data2.csv', 'a') as x:
                 exception = ''.join(traceback.format_tb(sys.exc_info()[2])) + '\n' + str(
                     sys.exc_info()[0]) + '\n line: ' + str(index_to_start)
                 exception = tuple_to_string(exception)
-                exception = exception + ' ' + '\n' + str(sys.exc_info()[1])
+                exception = exception + ' ' + '\n' + str(sys.exc_info()[1]) + '\n' + my_ip
+
                 send_email(exception)
                 print "records done: ", records_done
                 print exception
