@@ -8,6 +8,9 @@ import traceback
 import sys
 import exceptions
 import urllib2
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 my_ip = str(urllib2.urlopen('http://ip.42.pl/raw').read())
 
@@ -37,7 +40,7 @@ def tuple_to_string(t):
 
 
 index_to_start = 0
-records_to_skip = 0
+records_to_skip = 32291
 records_done = 0
 
 with open('data2.csv', 'a') as x:
