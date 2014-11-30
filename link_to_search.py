@@ -28,7 +28,7 @@ Subject: error occured in the process
 
 
 def tuple_to_string(t):
-    return ','.join([str(x) for x in t]) + '\n'
+    return ''.join([str(x) for x in t]) + '\n'
 
 
 index_to_start = 0
