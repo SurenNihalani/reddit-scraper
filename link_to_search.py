@@ -6,6 +6,7 @@ import smtplib
 from smtplib import SMTPException
 import traceback
 import sys
+import exceptions
 
 
 def send_email(exception):
@@ -37,7 +38,7 @@ index_to_start = 0
 records_to_skip = 0
 records_done = 0
 
-with open('data.csv', 'a') as x:
+with open('data2.csv', 'a') as x:
     with open('links.csv', 'r') as f:
         r = praw.Reddit('A school project bot to study distribution of links amongst subreddits')
         r.set_oauth_app_info(
@@ -55,36 +56,39 @@ with open('data.csv', 'a') as x:
                 line = line.strip()
                 line = line.split()
                 if len(line) != 5:
-                    print "MOTHERFUCKER: ", line
+                    print "MESSED UP LIN: ", line
                     continue
                 link, author, subreddit, time, score = line
 
                 all_items = []
-
-                for item in r.search('url:' + link):
+                for item in r.search(link):
                     if item.is_self:
                         continue
                     url = item.url
-                    if url != link:
-                        continue
                     user = item.author.name
                     time = item.created
                     score = item.score
                     subrreddit = item.subreddit
-                    all_items.append((author, subreddit, time, score))
+                    all_items.append((user, subreddit, time, score))
                 x.write(tuple_to_string((index_to_start, link, author, subreddit, time, score, json.dumps(all_items))))
-
                 records_done += 1
                 if records_done % 100 == 0:
                     x.flush()
                     print "records done: ", records_done
+
+            except exceptions.AttributeError as e:
+                print link
+                print e
+                print index_to_start
+                pass
             except:
                 exception = ''.join(traceback.format_tb(sys.exc_info()[2])) + '\n' + str(
                     sys.exc_info()[0]) + '\n line: ' + str(index_to_start)
                 exception = tuple_to_string(exception)
                 exception = exception + ' ' + '\n' + str(sys.exc_info()[1])
                 send_email(exception)
-                print "Records done: ", records_done
+                print "records done: ", records_done
                 print exception
                 print str(sys.exc_info()[0])
                 print str(sys.exc_info()[1])
+
