@@ -17,7 +17,7 @@ my_ip = str(urllib2.urlopen('http://ip.42.pl/raw').read())
 def send_email(exception):
     print "exception: ", str(exception)
     sender = 'from@fromdomain.com'
-    receivers = ['suren.k.n@icloud.com', 'khare.ashwini@gmail.com']
+    receivers = ['suren.k.n@icloud.com', 'khare.ashwini@gmail.com', 'prp3@gatech.edu','revant@gatech.edu']
 
     message = """From: Social computing  <redditer@reddit>
 To: Les Redditorians
