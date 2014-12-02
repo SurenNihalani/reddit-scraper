@@ -40,15 +40,15 @@ def tuple_to_string(t):
 
 
 index_to_start = 0
-records_to_skip = 32244
+records_to_skip = 28909
 records_done = 0
 
-with open('data_suren.csv', 'a') as x:
+with open('data_revant.csv', 'a') as x:
     with open('links.csv', 'r') as f:
         r = praw.Reddit('A school project bot to study distribution of links amongst subreddits')
         r.set_oauth_app_info(
-            client_id='GTlkDtvm2KkPjA',
-            client_secret='iJsUT9SQSI4jiIZHZxUtAqQhJ-Q',
+            client_id='rjDZ0vL2lOb9Zg',
+            client_secret='ryC8UlrOlTOmJrCwNF1mY0GqErk',
             redirect_uri='http://127.0.0.1:5000/')
         r.login(username="bad_guy_1991", password="qweasd")
 
