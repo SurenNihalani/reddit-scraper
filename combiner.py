@@ -9,7 +9,7 @@ if len(sys.argv) == 1:
     print "give me some files to combine"
 visited = set()
 
-with open('combined.txt', 'w') as w:
+with open('combined.csv', 'w') as w:
     for file in sys.argv[1:]:
         with open(file, 'r') as source:
             for line in source:
