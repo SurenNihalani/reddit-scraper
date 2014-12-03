@@ -4,18 +4,22 @@ from collections import Counter
 from matplotlib import pyplot
 import numpy as np
 
-with open('data2.csv', 'r') as f:
+with open('combined.csv', 'r') as f:
     score = []
     right_chain = []
+    #count = 1
     for line in f:
+        #if count == 500:
+         #   break;
         line = line.split(',', 6)
 
         line = line[-1]
         line = json.loads(line)
+        #count = count + 1
         if len(line) > 0:
             line.sort(key=lambda s: s[2])
             index = line.index(max(line, key=lambda s: s[3]))
-            score.append(max(line, key=lambda s: s[3]))
+            score.append(max(line, key=lambda s: s[3])[3])
             right_chain.append(len(line) - index -1)
             #original_author = line[0][0]
             #print original_author

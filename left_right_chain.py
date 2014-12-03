@@ -4,14 +4,18 @@ from collections import Counter
 from matplotlib import pyplot
 import numpy as np
 
-with open('data2.csv', 'r') as f:
+with open('combined.csv', 'r') as f:
     left_chain = []
     right_chain = []
+    count = 1
     for line in f:
+        if count == 500:
+            break;
         line = line.split(',', 6)
 
         line = line[-1]
         line = json.loads(line)
+        count = count + 1
         if len(line) > 0:
             line.sort(key=lambda s: s[2])
             index = line.index(max(line, key=lambda s: s[3]))
@@ -36,6 +40,8 @@ with open('data2.csv', 'r') as f:
     pyplot.title(r'Distribution of posts by left chain length')
     pyplot.grid(True)
     pyplot.savefig('left_chain' + '.png')
+
+    pyplot.clf()
 
     x = list(rc.elements())
     #print x
