@@ -2,6 +2,7 @@ __author__ = 'sn'
 import json
 from collections import Counter
 from matplotlib import pyplot
+#from pylab import *
 import numpy as np
 import csv
 
@@ -30,6 +31,16 @@ with open('final_filtered.csv') as f:
     #print x
     #bins = [i * 1 for i in range(10)]
 
+    count = [0,0,0,0,0,0]
+
+    for i in range(6):
+        count[i] = 0
+        for j in left_chain:
+            if i==j:
+                count[i] = count[i] + 1
+
+    count.reverse()
+
     pyplot.hist(x, bins=np.arange(min(x), max(x) + 5, 5), facecolor='green', alpha=0.75, log=True)
     pyplot.xlabel('Left Chain Length')
     pyplot.ylabel('Count')
@@ -53,3 +64,15 @@ with open('final_filtered.csv') as f:
     #pyplot.title(r'Distribution of posts by right chain length')
     pyplot.grid(True)
     pyplot.savefig('right_chain' + '.png')
+
+    pyplot.clf()
+
+    pos = np.arange(5)+.5 
+    pyplot.barh([0,1,2,3,4,5], count, height=0.8, log=True)
+    pyplot.yticks(pos, ('5', '4', '3', '2', '1', '0'))
+    #pyplot.xlabel('Performance')
+    pyplot.title('Times a popular link has an ealier submission')
+    pyplot.grid(True)
+    pyplot.savefig('count' + '.png')
+
+
