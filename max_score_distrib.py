@@ -17,14 +17,13 @@ with open('final_filtered.csv') as f:
             line.sort(key=lambda s: s[2])
             score_list.append(max(line, key=lambda s: s[3])[3])
 
-	c = Counter(score_list)
-
-    x = list(c.elements())
-    #print x
+	# c = Counter(score_list)
+ #    print c
+    x = score_list    #print x
     #bins = [i * 1 for i in range(10)]
 
     #pyplot.hist(x, bins=bins, facecolor='green', alpha=0.75)
-    pyplot.hist(x,bins=np.arange(min(x),max(x)+1,1),facecolor='green', alpha=0.75)
+    pyplot.hist(x, bins=np.arange(min(x),max(x)+10,10), facecolor='green', alpha=0.75)
     pyplot.xlabel('Maximum scores')
     pyplot.ylabel('Count')
     # pyplot.suptitle(r'pvalue')
