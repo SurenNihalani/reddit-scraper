@@ -14,14 +14,14 @@ with open('final_filtered.csv') as f:
         score = int(score)
         line = json.loads(json_info)
         #print line        
-        if len(line) > 0:
+        if len(line) >= 2:
             line.sort(key=lambda s: s[2])
             original_author = line[0][0]
             #print original_author
             lengths.append(len([item for item in line if item[0] == original_author]))
     #print lengths
     c = Counter(lengths)
-
+    c[1] = 0
     x = list(c.elements())
     #print x
     #bins = [i * 1 for i in range(10)]
