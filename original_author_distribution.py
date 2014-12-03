@@ -31,6 +31,6 @@ with open('final_filtered.csv') as f:
     pyplot.ylabel('Count')
     # pyplot.suptitle(r'pvalue')
 
-    pyplot.title(r'Distribution of posts by original author')
+    #pyplot.title(r'Distribution of posts by original author')
     pyplot.grid(True)
     pyplot.savefig('original_author' + '.png')

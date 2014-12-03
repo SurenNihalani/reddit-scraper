@@ -46,7 +46,7 @@ with open('final_filtered.csv') as f:
     #pyplot.legend((repost[0], repost[1], ('repost','original'))
     pyplot.xlabel('Subreddit')
     pyplot.ylabel('Number of posts')
-    pyplot.title('Number of reposts by subreddit')
+    #pyplot.title('Number of reposts by subreddit')
     pyplot.xticks(X,all_subreddits, size='10', rotation=45)
     pyplot.tight_layout(pad=1.2)
     #pyplot.margins(0.9)

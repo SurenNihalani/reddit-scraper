@@ -28,7 +28,7 @@ with open('final_filtered.csv') as f:
     pyplot.ylabel('Count')
     # pyplot.suptitle(r'pvalue')
 
-    pyplot.title(r'Distribution of maximum scores')
+    #pyplot.title(r'Distribution of maximum scores')
     pyplot.grid(True)
     pyplot.savefig('max_score_distribution' + '.png')
 

@@ -42,7 +42,7 @@ with open('final_filtered.csv') as f:
     pyplot.ylabel('Best Score')
     # pyplot.suptitle(r'pvalue')
 
-    pyplot.title(r'Distribution of scores by unique users in right chain')
+    #pyplot.title(r'Distribution of scores by unique users in right chain')
     pyplot.grid(True)
     pyplot.savefig('unique_score_right_chain' + '.png')
 

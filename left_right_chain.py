@@ -35,7 +35,7 @@ with open('final_filtered.csv') as f:
     pyplot.ylabel('Count')
     # pyplot.suptitle(r'pvalue')
 
-    pyplot.title(r'Distribution of posts by left chain length')
+    #pyplot.title(r'Distribution of posts by left chain length')
     pyplot.grid(True)
     pyplot.savefig('left_chain' + '.png')
 
@@ -50,6 +50,6 @@ with open('final_filtered.csv') as f:
     pyplot.ylabel('Count')
     # pyplot.suptitle(r'pvalue')
 
-    pyplot.title(r'Distribution of posts by right chain length')
+    #pyplot.title(r'Distribution of posts by right chain length')
     pyplot.grid(True)
     pyplot.savefig('right_chain' + '.png')

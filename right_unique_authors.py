@@ -38,6 +38,6 @@ with open('final_filtered.csv') as f:
     pyplot.ylabel('Count')
     # pyplot.suptitle(r'pvalue')
 
-    pyplot.title(r'Distribution of unique authors in the right chain')
+    #pyplot.title(r'Distribution of unique authors in the right chain')
     pyplot.grid(True)
     pyplot.savefig('right_chain_unique_authors' + '.png')
