@@ -6,11 +6,15 @@ import numpy as np
 
 with open('combined.csv', 'r') as f:
     lengths = []
+    count = 1
     for line in f:
+        if count == 500:
+            break
         line = line.split(',', 6)
 
         line = line[-1]
         line = json.loads(line)
+        count = count + 1
         if len(line) > 0:
             line.sort(key=lambda s: s[2])
             original_author = line[0][0]
