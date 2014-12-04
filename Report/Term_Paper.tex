@@ -94,6 +94,7 @@ For the project rest of the semester, we plan to re-choose subreddits after a me
 
 We then used Reddit API to retrieve the content (link submissions on hot page) from these subreddits by using an API wrapper (PRAW - python reddit api wrapper) provided for Python language. The script was executed for one hour each on four different times in the same day, to add the dimension of time in our content analysis. A MySQL database was used to store and update the tables of the content which was fetched. While data collection of top and news posts is running, in parallel, we also run a bot that looks at posts that has been collected more than 5 days in the past and we look up where have these links diffused in reddit and stores the tuple (link, sub\_reddit, poster, time\_created) into the db. 
 
+
 \section{Data Analysis}
 
 The statistics of the data collected can be seen in Table1.
@@ -106,7 +107,7 @@ The statistics of the data collected can be seen in Table1.
     Number of Unique Authors & 33044 \\ \hline
     Number of links reposted at least once & 7541 \\ \hline
     \end{tabular}
-    \caption{Contributions}
+    \caption{Data Analysis}
 \end{center}
 \end{table}
 
@@ -127,15 +128,17 @@ An example of chains can be seen in the following figure:
 
 In this example, we have three results, the last result has the max score, so our left chain length is 2 and right chain length is 0.  Note that we don?t do normalization with respect to how many subscribers are in the subreddit.
 
+\newpage
+
 \subsection{Distribution of Chain Length}
 
-Figure 2 shows a distribution of the chain length of the posts i.e. distribution of how far links go. It can be observed that most chain lengths are less than 50. There is a decreasing trend in the distribution. Thus, posts with longer chains are less in number. However, there is one anomaly. We notice a tiny growth at the end near the 230-240 bucket with like nothing in between. We looked at it, that post has 235 shares. We checked it manually and found that it turned out to be a spam link where every-time a randomly generated unique author posted in /r/funny.
+Figure 2 shows distribution of chain length of posts i.e. distribution of how far links go. It can be observed that most chain lengths are less than 50. There is a decreasing trend in distribution. Thus, posts with longer chains are less in number. However, there is one anomaly. We notice a tiny growth at the end near the 230-240 bucket with like nothing in between. This post has 235 shares and turned out to be a spam link where every-time a randomly generated unique author posted in /r/funny.
 
 \begin{figure}[h]
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=5in]{lengths.png}
+\includegraphics[width=3.8in]{lengths.png}
 \caption{Distribution of Chain Length}
 \end{center}
 \end{figure}
@@ -149,11 +152,12 @@ Figure 3 shows that distribution of posts by the original author. So, it basical
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=5in]{original_author.png}
+\includegraphics[width=3.7in]{original_author.png}
 \caption{Distribution of Original Author Re-posting}
 \end{center}
 \end{figure}
 
+\newpage
 
 \subsection{Distribution of Re-posts by each Subreddit}
 
@@ -163,7 +167,7 @@ Figure 4 shows the distribution of posts and re-posts by each subreddit. Thus, h
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=5in]{reposts.png}
+\includegraphics[width=3.9in]{reposts.png}
 \caption{Distribution of Re-posts by each Subreddit}
 \end{center}
 \end{figure}
@@ -171,26 +175,28 @@ Figure 4 shows the distribution of posts and re-posts by each subreddit. Thus, h
 
 \subsection{Distribution of Different Authors Re-posting}
 
-Figure 5 shows the distribution of different authors re-posting. So basically it calculates a ratio of unique authors by the chain length. If this ratio is 1, this means that all the authors in the chain for that particular post are unique. From the distribution, we observed that that ratio is 1 in most of the cases. Thus, the chain of most of the posts on Reddit consist of unique authors i.e. most of the time it?s only unique people who are reposting. 
+Figure 5 shows the distribution of different authors re-posting. So basically it calculates a ratio of unique authors by the chain length. If this ratio is 1, this means that all authors in post's chain are unique. We observed that that ratio is 1 in most of the cases. Thus, the chain of most of the posts on Reddit consist of unique authors i.e. most of the time it's only unique people who are reposting. 
 
 \begin{figure}[h]
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=5in]{unique_authors.png}
+\includegraphics[width=3.8in]{unique_authors.png}
 \caption{Distribution of Different Authors Re-posting}
 \end{center}
 \end{figure}
 
+\newpage
+
 \subsection{Distribution of Left Chain Length}
 
-Figure 6 shows the distribution of the left chain length. This distribution basically shows us people try to make a particular post happening and popular. Also, it tells us the factors that led to the post's maximum popularity in the entire chain. It is observed that the left chain for most posts is less than 30. Also, a decreasing behavior is observed as expected. However, again there is an anomaly in the graph. We notice a tiny growth at the end near the 225-230 bucket with like nothing in between. We looked at it, that post has a left chain length of 229. We checked it manually and found that it turned out to be a spam link where every-time a randomly generated unique author posted in /r/funny.
+Figure 6 shows distribution of left chain length. This distribution basically shows us how people try to make a particular post happening and popular. It tells the factors that led to the post's maximum popularity in the entire chain. It is observed that left chain for most posts is less than 30. Also, a decreasing behavior is observed as expected. However, again there is an anomaly in the graph near the 225-230 bucket. We looked at it, that post has a left chain length of 229 and found that it turned out to be a spam link where every-time a randomly generated unique author posted in /r/funny.
 
 \begin{figure}[h]
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=5in]{left_chain.png}
+\includegraphics[width=3.8in]{left_chain.png}
 \caption{Distribution of Left Chain Length}
 \end{center}
 \end{figure}
@@ -203,10 +209,12 @@ Figure 7 shows the distribution of the right chain length. It basically shows ho
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=5in]{right_chain.png}
+\includegraphics[width=3.7in]{right_chain.png}
 \caption{Distribution of Right Chain Length}
 \end{center}
 \end{figure}
+
+\newpage
 
 \subsection{Distribution of Max Score by the Right Chain Length}
 
@@ -216,7 +224,7 @@ Figure 8 shows the scatter plot of the maximum score achieved and the right chai
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=5in]{score_right_chain.png}
+\includegraphics[width=3.9in]{score_right_chain.png}
 \caption{Distribution of Max Score by the Right Chain Length}
 \end{center}
 \end{figure}
@@ -229,33 +237,55 @@ Figure 9 shows the distribution of the maximum score of the chains in our datase
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=5in]{max_score_distribution.png}
+\includegraphics[width=3.8in]{max_score_distribution.png}
 \caption{Distribution of Maximum Score of the chains}
 \end{center}
 \end{figure}
+
+\newpage
 
 
 \section{Comparison with Eric Gilbert's Paper on Widespread Under-provision on Reddit}
 
 We compared our results with a related study done by Eric Gilbert who found that only around half of the popular links were noticed in the initial submission. Gilbert?s dataset was popular links from /r/pics subreddit. We found similar results when we evaluated the same figures for our dataset of 12 sub-reddits.
 
-\begin{figure}[h]
-\begin{center}
-%\framebox[4.0in]{$\;$}
-%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=5in]{eric.png}
-\caption{Times a popular link has an earlier submission}
-\end{center}
-\end{figure}
+\begin{itemize}
+\item ?Widespread Under Provision on reddit? - Eric Gilbert
+	\begin{itemize}
+	\item Analyzed 9,370 popular links
+	\item 48\% links noticed on first submission
+	\item Refer figure 12
+	\end{itemize}
+	
+	\begin{figure}[h]
+	\begin{center}
+	%\framebox[4.0in]{$\;$}
+	%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+	\includegraphics[width=3.8in]{eric.png}
+	\caption{Times a popular link has an earlier submission}
+	\end{center}
+	\end{figure}
+	
+\item Our Study
+	\begin{itemize}
+	\item Analyzed 42,992 links
+	\item 12 subreddits
+	\item 78.28 % links noticed on first submission
+	\item Refer figure 13
+	\end{itemize}
+	
+	\begin{figure}[h]
+	\begin{center}
+	%\framebox[4.0in]{$\;$}
+	%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+	\includegraphics[width=3.7in]{count.png}
+	\caption{Times a popular link has an earlier submission}
+	\end{center}
+	\end{figure}
+\end{itemize}
 
-\begin{figure}[h]
-\begin{center}
-%\framebox[4.0in]{$\;$}
-%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=5in]{count.png}
-\caption{Times a popular link has an earlier submission}
-\end{center}
-\end{figure}
+\newpage
+
 
 \section{Anomalies with the Data}
 
@@ -267,23 +297,25 @@ We found some posts that reddit has banned directly on API level. An online sear
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=5in]{pol.png}
+\includegraphics[width=4.6in]{pol.png}
 \caption{Link which is forbidden on Reddit}
 \end{center}
 \end{figure}
 
 \subsection{Posts having chain length of 235}
 
-Post having a chain length of 235 was too good to be true. So, we checked it manually and found that it turned out to be a spam link where every-time a randomly generated unique author posted in /r/funny. It?s pretty creepy to see that someone is using the API to growth hack their website. We even checked the website. The domain name is expired. It doesn?t make sense. A screenshot of that page is shown below:
+Post having a chain length of 235 was too good to be true. So, we checked it manually and found that it turned out to be a spam link where every-time a randomly generated unique author posted in /r/funny. It?s pretty creepy to see that someone is using the API to growth hack their website.  The domain name is expired. It doesn't make sense. A screenshot of that page is shown below:
 
 \begin{figure}[h]
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=5in]{funny.png}
+\includegraphics[width=4.5in]{funny.png}
 \caption{Post with a chain length of 235}
 \end{center}
 \end{figure}
+
+\newpage
 
 \subsection{Exception Handling and Issues with PRAW}
 
@@ -292,11 +324,12 @@ We just wanted to point out the difficulties that we faced in data collection. A
 \section{Future Work}
 
 \begin{itemize}
-\item Study user?s reposting behavior
+\item Study user's reposting behavior
 \item Voting rings
 \item detect spam attempts
 \end{itemize}
 
+\iffalse
 \section{Work Ahead}
 For the second part of the term, we plan to collect data for 15 days from subreddits in different areas of interest and of smaller size with the new and top queue. We are planning to look at the following subreddits as shown in Table 1:
 
@@ -323,6 +356,7 @@ Thanks to http://redditlist.com/ we were able to look at sub reddits ordered by 
 While we'll collect the hot and new stories for each subreddit, we will also run a parallel bot that looks at links that were posted more than four days ago and see what subreddits the link got duplicated to. Now there are three possible scenarios for reposting. One is broadcaster where the user is trying to post the same link with multiple topics in multiple subreddits. We will see if the first link's occurrence has happened within relatively short amount of time in different subreddits by the same author. Another use case is cross posting link where the user is part of one community, while browsing that community, he/she comes across the link and shares in another community. We can use the reddit api to figure out where the links came from by sorting the links by time and then seeing if the original poster of the link is part of any of the subreddits the links in the past were posted in. It's highly probably that the user saw it in another subreddit then. The last one being the user came across the link outside reddit. We are considering if we can maybe survey them and hope users respond with right format of response like SMS voting schemes work these days. There also might be cases where the user doesn't know that the link was being duplicated. 
 
 We plan to identify to see how often does reposting of content happen. Is there is a triggering score at which reposts occur? Which subreddits are the first places of the posting? Is it that less common subreddits get content first because it's easier to reach the front page? How often do links do well in one subreddit and in other ones? We'll consider doing a visualization of how the content diverges.
+\fi
 
 
 \section{Contributions}

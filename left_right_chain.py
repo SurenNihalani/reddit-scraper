@@ -70,7 +70,7 @@ with open('final_filtered.csv') as f:
     count.reverse()
 
     pos = np.arange(5)+.5 
-    pyplot.barh([0,1,2,3,4,5], count, height=0.8, log=True)
+    pyplot.barh([0,1,2,3,4,5], count, height=0.8)#, log=True)
     pyplot.yticks(pos, ('5', '4', '3', '2', '1', '0'))
     #pyplot.xlabel('Performance')
     pyplot.title('Times a popular link has an earlier submission')
