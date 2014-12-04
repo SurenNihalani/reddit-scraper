@@ -11,7 +11,7 @@ with open('subreddits.list') as f:
     for subr in all_subreddits:
         views = { 'first' : 0, 'repost' : 0 }
         counts[subr] = views
-print counts
+#print counts
 with open('final_filtered.csv') as f:
     reader = csv.reader(f)
     for row in reader:
@@ -39,14 +39,14 @@ with open('final_filtered.csv') as f:
     for k in counts:
         repost.append(counts[k]['repost'])
         original.append(counts[k]['first'])
-    print len(repost)
-    print original
+    #print len(repost)
+    #print original
     a = pyplot.bar(X, original, color = 'b', log=True)
     b = pyplot.bar(X, repost, color = 'r', bottom = original, log=True)
     #pyplot.legend((repost[0], repost[1], ('repost','original'))
     pyplot.xlabel('Subreddit')
     pyplot.ylabel('Number of posts')
-    #pyplot.title('Number of reposts by subreddit')
+    pyplot.title('Number of reposts by subreddit')
     pyplot.xticks(X,all_subreddits, size='10', rotation=45)
     pyplot.tight_layout(pad=1.2)
     #pyplot.margins(0.9)

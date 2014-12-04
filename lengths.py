@@ -30,6 +30,6 @@ with open('final_filtered.csv') as f:
     pyplot.ylabel('Count')
     #pyplot.suptitle(r'pvalue')
 
-    #pyplot.title(r'Distribution of chain length')
+    pyplot.title(r'Distribution of chain length')
     pyplot.grid(True)
     pyplot.savefig('lengths' + '.png')

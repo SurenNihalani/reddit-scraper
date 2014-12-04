@@ -35,6 +35,6 @@ with open('final_filtered.csv') as f:
     pyplot.ylabel('Score')
     # pyplot.suptitle(r'pvalue')
 
-    #pyplot.title(r'Distribution of scores by right chain length')
+    pyplot.title(r'Distribution of scores by right chain length')
     pyplot.grid(True)
     pyplot.savefig('score_right_chain' + '.png')
