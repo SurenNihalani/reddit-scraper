@@ -47,7 +47,7 @@ In this project, we have looked at the following interesting phenomenon:
 Karma\ in\ one\ reddit\ \ \ \ \propto\ \ \ \ repost  \nonumber
 \end{equation}
 
-Thus, we have mainly focusing on to depict how the users satisfy their Reddit Karma and the design implications of this in online communities. We have correlated a post's score with its diffusion into other subreddits. We have tried to answer the questions such as -- How often do links get reposted?, How many times does a user try to broadcast a link initially? 
+Thus, we have mainly focusing on to depict how the users satisfy their Reddit Karma and the design implications of this in online communities. We have correlated a post's score with its diffusion into other subreddits. We have tried to answer the questions such as -- How often do links get reposted?, How many times does a user try to broadcast a link initially? We are trying to see whether there is a relationship between karma and repost frequency.
 
 
 \section{Background Study}
@@ -129,7 +129,7 @@ In this example, we have three results, the last result has the max score, so ou
 
 \subsection{Distribution of Chain Length}
 
-This is a distribution plot of how far links go. It?s pretty clear to see that most links don?t go more than 10. We hoped to see decreasing bars. However there is an anomaly. We see a tiny growth at the end near the 240-250 bucket with like nothing in between. We looked at it, that post has 235 shares.
+Figure 2 shows a distribution of the chain length of the posts i.e. distribution of how far links go. It can be observed that most chain lengths are less than 50. There is a decreasing trend in the distribution. Thus, posts with longer chains are less in number. However, there is one anomaly. We notice a tiny growth at the end near the 230-240 bucket with like nothing in between. We looked at it, that post has 235 shares. We checked it manually and found that it turned out to be a spam link where every-time a randomly generated unique author posted in /r/funny.
 
 \begin{figure}[h]
 \begin{center}
@@ -143,7 +143,7 @@ This is a distribution plot of how far links go. It?s pretty clear to see that m
 
 \subsection{Distribution of Original Author Re-posting}
 
-This is a plot of how often does the original author repost his own link. The max one has gone to 12. 
+Figure 3 shows that distribution of posts by the original author. So, it basically shows the the number of times the original author is reposting his/her own link in order to broadcast it so that it becomes more popular which eventually leads to a higher karma for him/her. We observed that the maximum number of times author has reposted has gone to 12 in our dataset.
 
 \begin{figure}[h]
 \begin{center}
@@ -157,7 +157,7 @@ This is a plot of how often does the original author repost his own link. The ma
 
 \subsection{Distribution of Re-posts by each Subreddit}
 
-We are looking how much repost happens in each subreddit. We were expecting a lot of reposts from adviceanimals/funny because most of them are meme based subreddits but the onion and radioreddit came out on the top. 
+Figure 4 shows the distribution of posts and re-posts by each subreddit. Thus, here we are looking how much repost happens in each subreddit. We were expecting a lot of reposts from subreddits adviceanimals or funny because most of them are meme based subreddits but the onion and radioreddit came out on the top. 
 
 \begin{figure}[h]
 \begin{center}
@@ -171,7 +171,7 @@ We are looking how much repost happens in each subreddit. We were expecting a lo
 
 \subsection{Distribution of Different Authors Re-posting}
 
-This plot tells us that most of the time it?s only unique people who are reposting. 
+Figure 5 shows the distribution of different authors re-posting. So basically it calculates a ratio of unique authors by the chain length. If this ratio is 1, this means that all the authors in the chain for that particular post are unique. From the distribution, we observed that that ratio is 1 in most of the cases. Thus, the chain of most of the posts on Reddit consist of unique authors i.e. most of the time it?s only unique people who are reposting. 
 
 \begin{figure}[h]
 \begin{center}
@@ -184,7 +184,7 @@ This plot tells us that most of the time it?s only unique people who are reposti
 
 \subsection{Distribution of Left Chain Length}
 
-This is left chain length showing that people trying to make a post happening. 
+Figure 6 shows the distribution of the left chain length. This distribution basically shows us people try to make a particular post happening and popular. Also, it tells us the factors that led to the post's maximum popularity in the entire chain. It is observed that the left chain for most posts is less than 30. Also, a decreasing behavior is observed as expected. However, again there is an anomaly in the graph. We notice a tiny growth at the end near the 225-230 bucket with like nothing in between. We looked at it, that post has a left chain length of 229. We checked it manually and found that it turned out to be a spam link where every-time a randomly generated unique author posted in /r/funny.
 
 \begin{figure}[h]
 \begin{center}
