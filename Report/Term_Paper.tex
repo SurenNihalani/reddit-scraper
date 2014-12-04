@@ -76,19 +76,142 @@ For the project rest of the semester, we plan to re-choose subreddits after a me
 
 We then used Reddit API to retrieve the content (link submissions on hot page) from these subreddits by using an API wrapper (PRAW - python reddit api wrapper) provided for Python language. The script was executed for one hour each on four different times in the same day, to add the dimension of time in our content analysis. A MySQL database was used to store and update the tables of the content which was fetched. While data collection of top and news posts is running, in parallel, we also run a bot that looks at posts that has been collected more than 5 days in the past and we look up where have these links diffused in reddit and stores the tuple (link, sub\_reddit, poster, time\_created) into the db. 
 
-
 \section{Data Analysis}
+
+The statistics of the data collected can be seen in Table1.
+
+\begin{table}
+\begin{center}
+    \begin{tabular}{ | l | l | }
+    \hline
+    Number of Posts & 42992 \\ \hline
+    Number of Unique Authors & 33044 \\ \hline
+    Number of links reposted at least once & 7541 \\ \hline
+    \end{tabular}
+    \caption{Contributions}
+\end{center}
+\end{table}
+
+\subsection{Chains}
+
+Once we have obtained all the posts, we search each of the posts on reddit in order to get their diffusion across the various sub-reddits since their inception. Thus, we thinking of the search results like a diffusion chain. We have sorted the results by time and we call the first person to post the link as the original author. How many times the original author posts initially is how much effort he puts into broadcasting the link. After this, we have found the search result with max score so that we can know when a particular reached its maximum popularity. All results to the left of the max post form the left chain and after wards form the right chain.
+
+An example of chains can be seen in the following figure:
+
+\begin{figure}[h]
+\begin{center}
+%\framebox[4.0in]{$\;$}
+%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+\includegraphics[width=4in]{chain.png}
+\caption{Description of Chain}
+\end{center}
+\end{figure}
+
+In this example, we have three results, the last result has the max score, so our left chain length is 2 and right chain length is 0.  Note that we don?t do normalization with respect to how many subscribers are in the subreddit.
+
+\subsection{Distribution of Chain Length}
+
+\begin{figure}[h]
+\begin{center}
+%\framebox[4.0in]{$\;$}
+%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+\includegraphics[width=4in]{lengths.png}
+\caption{Distribution of Chain Length}
+\end{center}
+\end{figure}
+
+
+\subsection{Distribution of Original Author Re-posting}
+
+\begin{figure}[h]
+\begin{center}
+%\framebox[4.0in]{$\;$}
+%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+\includegraphics[width=4in]{original_author.png}
+\caption{Distribution of Original Author Re-posting}
+\end{center}
+\end{figure}
+
+
+\subsection{Distribution of Re-posts by each Subreddit}
+
+\begin{figure}[h]
+\begin{center}
+%\framebox[4.0in]{$\;$}
+%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+\includegraphics[width=4in]{reposts.png}
+\caption{Distribution of Re-posts by each Subreddit}
+\end{center}
+\end{figure}
+
+
+\subsection{Distribution of Different Authors Re-posting}
+
+\begin{figure}[h]
+\begin{center}
+%\framebox[4.0in]{$\;$}
+%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+\includegraphics[width=4in]{unique_authors.png}
+\caption{Distribution of Different Authors Re-posting}
+\end{center}
+\end{figure}
+
+\subsection{Distribution of Left Chain Length}
+
+\begin{figure}[h]
+\begin{center}
+%\framebox[4.0in]{$\;$}
+%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+\includegraphics[width=4in]{left_chain.png}
+\caption{Distribution of Left Chain Length}
+\end{center}
+\end{figure}
+
+\subsection{Distribution of Right Chain Length}
+
+\begin{figure}[h]
+\begin{center}
+%\framebox[4.0in]{$\;$}
+%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+\includegraphics[width=4in]{right_chain.png}
+\caption{Distribution of Right Chain Length}
+\end{center}
+\end{figure}
+
+\subsection{Distribution of Max Score by the Right Chain Length}
+
+\begin{figure}[h]
+\begin{center}
+%\framebox[4.0in]{$\;$}
+%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+\includegraphics[width=4in]{score_right_chain.png}
+\caption{Distribution of Max Score by the Right Chain Length}
+\end{center}
+\end{figure}
+
+\subsection{Distribution of Maximum Score of the chains}
+
+\begin{figure}[h]
+\begin{center}
+%\framebox[4.0in]{$\;$}
+%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+\includegraphics[width=4in]{max_score_distribution.png}
+\caption{Distribution of Maximum Score of the chains}
+\end{center}
+\end{figure}
 
 From the data we have collected, we have done some basic analysis and made some visualizations.
 
 We wanted to look at the trend of how often do users contribute. Our hypothesis was the very very few users contribute worth content. Figure 1 refers to the graph between number of users and number of posts. As you can see very few users have good amount of posts. On the x-axis, it shows the counts of the posts, and on the y-axis, the corresponding number of users who have made that many posts. In the collection, we noticed that 633 users had posted single time, and this number decreased drastically as the count got number of posts increased. Figure 2 refers to the graph of number of submissions per subreddits. Figure 3 refers to the graph of mean link karma of users who have posted. Figure 4 refers to the means scores of submissions. Figure 5 refers to the number of search results and score of submission.
 
+\section{Comparison with Eric Gilbert's Paper on Under-provision on Reddit}
+
 \begin{figure}[h]
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=4in]{user.png}
-\caption{number of users and number of posts}
+\includegraphics[width=4in]{max_score_distribution.png}
+\caption{Distribution of Maximum Score of the chains}
 \end{center}
 \end{figure}
 
@@ -96,38 +219,22 @@ We wanted to look at the trend of how often do users contribute. Our hypothesis 
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=4in]{graph4.png}
-\caption{number of submissions per sub-reddits}
+\includegraphics[width=4in]{count.png}
+\caption{Times a popular link has an earlier submission}
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
-\begin{center}
-%\framebox[4.0in]{$\;$}
-%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=4in]{graph3.png}
-\caption{mean link karma of users}
-\end{center}
-\end{figure}
+\section{Anomalies with the Data}
 
-\begin{figure}[h]
-\begin{center}
-%\framebox[4.0in]{$\;$}
-%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=4in]{graph2.png}
-\caption{means scores of submissions}
-\end{center}
-\end{figure}
+\subsection{Forbidden Links}
 
-\begin{figure}[h]
-\begin{center}
-%\framebox[4.0in]{$\;$}
-%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=4in]{graph5.png}
-\caption{number of search results and score of submission}
-\end{center}
-\end{figure}
+\subsection{Posts having chain length of 235}
 
+\subsection{Exception Handling}
+
+\subsection{Issue with PRAW}
+
+\section{Future Work}
 
 \section{Work Ahead}
 For the second part of the term, we plan to collect data for 15 days from subreddits in different areas of interest and of smaller size with the new and top queue. We are planning to look at the following subreddits as shown in Table 1:

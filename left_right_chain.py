@@ -18,6 +18,8 @@ with open('final_filtered.csv') as f:
         if len(line) > 0:
             line.sort(key=lambda s: s[2])
             index = line.index(max(line, key=lambda s: s[3]))
+            #if index == 234:
+             #   continue
             left_chain.append(index)
             right_chain.append(len(line) - index -1)
             #original_author = line[0][0]
@@ -30,7 +32,7 @@ with open('final_filtered.csv') as f:
     #x = list(lc.elements())
     #print x
     #bins = [i * 1 for i in range(10)]
-
+    #print sorted(left_chain)
     pyplot.hist(left_chain, bins=np.arange(min(left_chain), max(left_chain) + 5, 5), facecolor='green', alpha=0.75, log=True)
     pyplot.xlabel('Left Chain Length')
     pyplot.ylabel('Count')
