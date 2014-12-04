@@ -102,7 +102,7 @@ An example of chains can be seen in the following figure:
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=4in]{chain.png}
+\includegraphics[width=5in]{chain.png}
 \caption{Description of Chain}
 \end{center}
 \end{figure}
@@ -111,11 +111,13 @@ In this example, we have three results, the last result has the max score, so ou
 
 \subsection{Distribution of Chain Length}
 
+This is a distribution plot of how far links go. It?s pretty clear to see that most links don?t go more than 10. We hoped to see decreasing bars. However there is an anomaly. We see a tiny growth at the end near the 240-250 bucket with like nothing in between. We looked at it, that post has 235 shares.
+
 \begin{figure}[h]
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=4in]{lengths.png}
+\includegraphics[width=5in]{lengths.png}
 \caption{Distribution of Chain Length}
 \end{center}
 \end{figure}
@@ -123,11 +125,13 @@ In this example, we have three results, the last result has the max score, so ou
 
 \subsection{Distribution of Original Author Re-posting}
 
+This is a plot of how often does the original author repost his own link. The max one has gone to 12. 
+
 \begin{figure}[h]
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=4in]{original_author.png}
+\includegraphics[width=5in]{original_author.png}
 \caption{Distribution of Original Author Re-posting}
 \end{center}
 \end{figure}
@@ -135,11 +139,13 @@ In this example, we have three results, the last result has the max score, so ou
 
 \subsection{Distribution of Re-posts by each Subreddit}
 
+We are looking how much repost happens in each subreddit. We were expecting a lot of reposts from adviceanimals/funny because most of them are meme based subreddits but the onion and radioreddit came out on the top. 
+
 \begin{figure}[h]
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=4in]{reposts.png}
+\includegraphics[width=5in]{reposts.png}
 \caption{Distribution of Re-posts by each Subreddit}
 \end{center}
 \end{figure}
@@ -147,55 +153,65 @@ In this example, we have three results, the last result has the max score, so ou
 
 \subsection{Distribution of Different Authors Re-posting}
 
+This plot tells us that most of the time it?s only unique people who are reposting. 
+
 \begin{figure}[h]
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=4in]{unique_authors.png}
+\includegraphics[width=5in]{unique_authors.png}
 \caption{Distribution of Different Authors Re-posting}
 \end{center}
 \end{figure}
 
 \subsection{Distribution of Left Chain Length}
 
+This is left chain length showing that people trying to make a post happening. 
+
 \begin{figure}[h]
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=4in]{left_chain.png}
+\includegraphics[width=5in]{left_chain.png}
 \caption{Distribution of Left Chain Length}
 \end{center}
 \end{figure}
 
 \subsection{Distribution of Right Chain Length}
 
+This plot shows how far diffusion of a link can go. No link made it more than 50 shares. 
+
 \begin{figure}[h]
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=4in]{right_chain.png}
+\includegraphics[width=5in]{right_chain.png}
 \caption{Distribution of Right Chain Length}
 \end{center}
 \end{figure}
 
 \subsection{Distribution of Max Score by the Right Chain Length}
 
+this is my favorite plot, it shows that for each post?s maximum karma, how many reposts can you expect? We were surprised to see most of the diffusion after the highest point in is mostly upto 20.
+
 \begin{figure}[h]
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=4in]{score_right_chain.png}
+\includegraphics[width=5in]{score_right_chain.png}
 \caption{Distribution of Max Score by the Right Chain Length}
 \end{center}
 \end{figure}
 
 \subsection{Distribution of Maximum Score of the chains}
 
+This plot shows the distribution of scores for all posts we had collected. We had expected the figure to be at highest around the low scores, and have a decreasing nature with a long tail. However, we noticed a surge in posts with scores around 3000.
+
 \begin{figure}[h]
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=4in]{max_score_distribution.png}
+\includegraphics[width=5in]{max_score_distribution.png}
 \caption{Distribution of Maximum Score of the chains}
 \end{center}
 \end{figure}
@@ -204,14 +220,16 @@ From the data we have collected, we have done some basic analysis and made some 
 
 We wanted to look at the trend of how often do users contribute. Our hypothesis was the very very few users contribute worth content. Figure 1 refers to the graph between number of users and number of posts. As you can see very few users have good amount of posts. On the x-axis, it shows the counts of the posts, and on the y-axis, the corresponding number of users who have made that many posts. In the collection, we noticed that 633 users had posted single time, and this number decreased drastically as the count got number of posts increased. Figure 2 refers to the graph of number of submissions per subreddits. Figure 3 refers to the graph of mean link karma of users who have posted. Figure 4 refers to the means scores of submissions. Figure 5 refers to the number of search results and score of submission.
 
-\section{Comparison with Eric Gilbert's Paper on Under-provision on Reddit}
+\section{Comparison with Eric Gilbert's Paper on Widespread Under-provision on Reddit}
+
+We compared our results with a related study done by Eric Gilbert who found that only around half of the popular links were noticed in the initial submission. Gilbert?s dataset was popular links from /r/pics subreddit. We found similar results when we evaluated the same figures for our dataset of 12 sub-reddits.
 
 \begin{figure}[h]
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=4in]{max_score_distribution.png}
-\caption{Distribution of Maximum Score of the chains}
+\includegraphics[width=5in]{eric.png}
+\caption{Times a popular link has an earlier submission}
 \end{center}
 \end{figure}
 
@@ -219,7 +237,7 @@ We wanted to look at the trend of how often do users contribute. Our hypothesis 
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=4in]{count.png}
+\includegraphics[width=5in]{count.png}
 \caption{Times a popular link has an earlier submission}
 \end{center}
 \end{figure}
@@ -228,13 +246,41 @@ We wanted to look at the trend of how often do users contribute. Our hypothesis 
 
 \subsection{Forbidden Links}
 
+We found some posts that reddit has banned directly on API level. An online search of the given link redirected to a 403 Forbidden Error page. Interestingly, the link has a politically sensitive article. Moreover, it is no where mentioned in their API documentation to get an error of this nature. One of such pages can be seen in the following image:
+
+\begin{figure}[h]
+\begin{center}
+%\framebox[4.0in]{$\;$}
+%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+\includegraphics[width=5in]{pol.png}
+\caption{Link which is forbidden on Reddit}
+\end{center}
+\end{figure}
+
 \subsection{Posts having chain length of 235}
 
-\subsection{Exception Handling}
+Post having a chain length of 235 was too good to be true. So, we checked it manually and found that it turned out to be a spam link where every-time a randomly generated unique author posted in /r/funny. It?s pretty creepy to see that someone is using the API to growth hack their website. We even checked the website. The domain name is expired. It doesn?t make sense. A screenshot of that page is shown below:
 
-\subsection{Issue with PRAW}
+\begin{figure}[h]
+\begin{center}
+%\framebox[4.0in]{$\;$}
+%\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+\includegraphics[width=5in]{funny.png}
+\caption{Post with a chain length of 235}
+\end{center}
+\end{figure}
+
+\subsection{Exception Handling and Issues with PRAW}
+
+We just wanted to point out the difficulties that we faced in data collection. A lot of exception handling had to be done to take care of various issues to collect a dataset with a decent number of records. We had email alerts set up to notify whenever our bot found a new error. Also, the python wrapper we used to collect data had its own issues which forced us to recollect data in Phase 2.
 
 \section{Future Work}
+
+\begin{itemize}
+\item Study user?s reposting behavior
+\item Voting rings
+\item detect spam attempts
+\end{itemize}
 
 \section{Work Ahead}
 For the second part of the term, we plan to collect data for 15 days from subreddits in different areas of interest and of smaller size with the new and top queue. We are planning to look at the following subreddits as shown in Table 1:
@@ -265,7 +311,7 @@ We plan to identify to see how often does reposting of content happen. Is there 
 
 
 \section{Contributions}
-We have been contributing about equally this far. However we have distributed responsibilities based upon areas of interest as shown in Table 2.
+We have been contributing about equally in this project. However we have distributed responsibilities based upon areas of interest as shown in Table 2.
 
 
 \begin{table}
