@@ -1,23 +1,22 @@
 \BOOKMARK [1][-]{section.1}{Objectives}{}% 1
 \BOOKMARK [1][-]{section.2}{Background Study}{}% 2
 \BOOKMARK [1][-]{section.3}{Data Collection}{}% 3
-\BOOKMARK [2][-]{subsection.3.1}{Identification of Subreddits}{section.3}% 4
-\BOOKMARK [2][-]{subsection.3.2}{Fetching and Storing}{section.3}% 5
-\BOOKMARK [1][-]{section.4}{Data Analysis}{}% 6
-\BOOKMARK [2][-]{subsection.4.1}{Chains}{section.4}% 7
-\BOOKMARK [2][-]{subsection.4.2}{Distribution of Chain Length}{section.4}% 8
-\BOOKMARK [2][-]{subsection.4.3}{Distribution of Original Author Re-posting}{section.4}% 9
-\BOOKMARK [2][-]{subsection.4.4}{Distribution of Re-posts by each Subreddit}{section.4}% 10
-\BOOKMARK [2][-]{subsection.4.5}{Distribution of Different Authors Re-posting}{section.4}% 11
-\BOOKMARK [2][-]{subsection.4.6}{Distribution of Left Chain Length}{section.4}% 12
-\BOOKMARK [2][-]{subsection.4.7}{Distribution of Right Chain Length}{section.4}% 13
-\BOOKMARK [2][-]{subsection.4.8}{Distribution of Max Score by the Right Chain Length}{section.4}% 14
-\BOOKMARK [2][-]{subsection.4.9}{Distribution of Maximum Score of the chains}{section.4}% 15
-\BOOKMARK [1][-]{section.5}{Comparison with Eric Gilbert's Paper on Widespread Under-provision on Reddit}{}% 16
-\BOOKMARK [1][-]{section.6}{Anomalies with the Data}{}% 17
-\BOOKMARK [2][-]{subsection.6.1}{Forbidden Links}{section.6}% 18
-\BOOKMARK [2][-]{subsection.6.2}{Posts having chain length of 235}{section.6}% 19
-\BOOKMARK [2][-]{subsection.6.3}{Exception Handling and Issues with PRAW}{section.6}% 20
-\BOOKMARK [1][-]{section.7}{Future Work}{}% 21
-\BOOKMARK [1][-]{section.8}{Contributions}{}% 22
-\BOOKMARK [1][-]{section.9}{References}{}% 23
+\BOOKMARK [1][-]{section.4}{Data Analysis}{}% 4
+\BOOKMARK [2][-]{subsection.4.1}{Chains}{section.4}% 5
+\BOOKMARK [2][-]{subsection.4.2}{Distribution of Chain Length}{section.4}% 6
+\BOOKMARK [2][-]{subsection.4.3}{Distribution of Original Author Re-posting}{section.4}% 7
+\BOOKMARK [2][-]{subsection.4.4}{Distribution of Re-posts by each Subreddit}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.5}{Distribution of Different Authors Re-posting}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.6}{Distribution of Left Chain Length}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.7}{Distribution of Right Chain Length}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.8}{Distribution of Max Score by the Right Chain Length}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.9}{Distribution of Maximum Score of the chains}{section.4}% 13
+\BOOKMARK [1][-]{section.5}{Comparison with Eric Gilbert's Paper on Widespread Under-provision on Reddit}{}% 14
+\BOOKMARK [1][-]{section.6}{Anomalies with the Data}{}% 15
+\BOOKMARK [2][-]{subsection.6.1}{Forbidden Links}{section.6}% 16
+\BOOKMARK [2][-]{subsection.6.2}{Posts having chain length of 235}{section.6}% 17
+\BOOKMARK [2][-]{subsection.6.3}{Exception Handling and Issues with PRAW}{section.6}% 18
+\BOOKMARK [1][-]{section.7}{Conclusion}{}% 19
+\BOOKMARK [1][-]{section.8}{Future Work}{}% 20
+\BOOKMARK [1][-]{section.9}{Contributions}{}% 21
+\BOOKMARK [1][-]{section.10}{References}{}% 22

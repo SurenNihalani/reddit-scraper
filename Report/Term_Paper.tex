@@ -1,6 +1,6 @@
 \documentclass{article} % For LaTeX2e
 \usepackage{nips13submit_e,times}
-\usepackage{hyperref}
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
 \usepackage{url}
 \usepackage{graphicx}
 \usepackage{amssymb}
@@ -52,21 +52,58 @@ Thus, we have mainly focusing on to depict how the users satisfy their Reddit Ka
 
 \section{Background Study}
 
-As social networks and the user-generated content that populates them continue to grow in prevalence, size, and influence, understanding how users interact and produce this content becomes increasingly important. Insight into these community dynamics could prove valuable for measuring content trust, providing role-based group recommendations, or evaluating group stability and growth. For the related work, we have done readings of three papers, namely, Eric Gilbert's - ``Widespread Under Provision on reddit'', Cody Buntain's - ``Identifying social roles in reddit using network structure'' and Donn Morrison's - ``Here, have an upvote: communication behaviour and karma on Reddit''.
+As social networks and the user-generated content that populates them continue to grow in prevalence, size, and influence, understanding how users interact and produce this content becomes increasingly important. Insight into these community dynamics could prove valuable for measuring content trust, providing role-based group recommendations, or evaluating group stability and growth. For the related work, we have done readings of three papers, namely, Eric Gilbert's - ``Widespread Under Provision on reddit'', Cody Buntain's - ``Identifying social roles in reddit using network structure'' and Donn Morrison's - ``Here, have an upvote: communication behavior and karma on Reddit''.
 
-Online communities rely on their members to do work for the good of everyone on the site. The links with the most up-votes bubble up to the main page, pointing everyone toward the best content. However, when too many people rely on others to contribute without doing so themselves results in underprovision. Gilbert observed that Reddit overlooked 52\% of the most popular links the first time they were submitted [1]. This suggests that many potentially popular links get ignored, thus jeopardizing the site's core purpose of showing the best voted content. 
+Online communities rely on their members to do work for the good of everyone on the site. The links with the most up-votes bubble up to the main page, pointing everyone toward the best content. However, when too many people rely on others to contribute without doing so themselves results in under-provision. Gilbert observed that Reddit overlooked 52\% of the most popular links the first time they were submitted [1]. This suggests that many potentially popular links get ignored, thus jeopardizing the site's core purpose of showing the best voted content. 
 
-Cody Buntain has identified well-known behavioral patterns and social roles in the multi-community environments. In his paper, he has demonstrated the presence and identifiability of the answer-person role in reddit and showed that only a very small number of users participate across community boundaries [2]. 
+%Cody Buntain has identified well-known behavioral patterns and social roles in the multi-community environments. In his paper, he has demonstrated the presence and identifiability of the answer-person role in reddit and showed that only a very small number of users participate across community boundaries [2]. 
 				
-Donn Morrison has tried to cluster the users of Reddit.com into behavioural roles using features derived from their egocentric reply-graphs. He has tried to explore the link between the distribution of karma (i.e. popularity measured by the number of up- and downvotes) and the behavioural role to which that user belongs. He observed that users with Contributor behaviour proved to be more popular, however the variance in karma in this role was high [3]. Thus, this indicates that the contributor role encompasses both popular and unpopular users. By predicting high-karma users, community owners or moderators, or even the users themselves, could more efficiently manage and maintain behaviour in the forums such as Reddit.com under analysis.	
+%Donn Morrison has tried to cluster the users of Reddit.com into behavioural roles using features derived from their egocentric reply-graphs. He has tried to explore the link between the distribution of karma (i.e. popularity measured by the number of up- and downvotes) and the behavioural role to which that user belongs. He observed that users with Contributor behaviour proved to be more popular, however the variance in karma in this role was high [3]. Thus, this indicates that the contributor role encompasses both popular and unpopular users. By predicting high-karma users, community owners or moderators, or even the users themselves, could more efficiently manage and maintain behaviour in the forums such as Reddit.com under analysis.	
 
-All three papers have tried to examine the users and the data posted by them on Reddit.com. They demonstrated that most of the popular links are overlooked in the first time, only a small number of users participate across community boundaries and the behavioural role of the user is directly linked to the distribution of karma. 
+The other two mentioned papers have tried to examine the users and the data posted by them on Reddit.com. They demonstrated that most of the popular links are overlooked in the first time, only a small number of users participate across community boundaries and the behavioral role of the user is directly linked to the distribution of karma. 
 
 In this project, we are also trying to examine the users and their activity. We are trying to demonstrate that popularity of content leads to its duplication on Reddit. In order to achieve this, we have used the Reddit API to collect the data across various subreddits at various times of the day. 
 
+Some of the questions that we have tried to answer in our project are as follows:
+
+\begin{itemize}
+\item How often does reposting of content happen?
+\item Is there a triggering score at which reposts occur? 
+\item Which subreddits are the first places of the posting? 
+\item Is it that less common subreddits get content first because it's easier to reach the front page? 
+\item How often do links do well in one subreddit and in other ones? 
+\end{itemize}
 
 \section{Data Collection}
 
+We split the data collection into two phases. 
+
+During the first phase, we choose 12 subreddits to monitor. Thanks to \href{http://redditlist.com/}{http://redditlist.com/} we were able to look at sub reddits ordered by highest subscribers. The subreddits chosen for this study were: 
+
+\begin{itemize}
+\item /funny
+\item /adviceanimals
+\item /videos
+\item /music
+\item /technology
+\item /nottheonion
+\item /punny
+\item /adviceatheists
+\item /youtube
+\item /radioreddit
+\item /programming
+\item /theonion
+\end{itemize}
+
+Reddit has two types of submissions, namely links and self posts. Self posts are textual submissions. We decided to only look at links because links are binary in the sense that either link leads to the same content or it doesn't. Textual posts might have similar meaning but text might be different. For the purposes of this study, we are only looking at links. 
+
+Every minute, for 8 days, we took a snapshot of all links shared in /new and /hot queue of these subreddits. After 8 day, we wait for five days hoping that most diffusion of links has occurred by then. Our assumption here is that people will share links that they will see links only on the popular page and by five days, the popularity would have been flushed well. 
+
+Now, in the second phase, we take each of the links, and see what other subreddits it has been posted in. We store the map of link to posts in other subreddits. This comprises our data set. 
+
+For the period of 8 days, we managed to get hold of about 42992 posts. Out of these posts, there were about 33044 unique authors and there were about 7541 posts with at-least one repost.
+
+\iffalse
 \subsection{Identification of Subreddits}
 
 So far, We chose subreddits related to photography. This was done as all reddit posts on such subreddits use image sharing services like imgur.com. These sharing services usually generate an unique url for each gallery that can be used to share on reddit. Hence, by searching for posts with same image urls, we were able to identify duplicate posts.
@@ -76,16 +113,18 @@ Reddit has an inbuilt subreddit recommendation system which lists down relevant 
 The subreddits chosen for this study were: 
 
 \begin{itemize}
-\item /pics
-\item /gifs
-\item /picrequests
-\item /photography
-\item /Images
-\item /itookapicture
-\item /postprocessing
-\item /photocritique
-\item /HDR
-\item /shittyHDR
+\item /funny
+\item /adviceanimals
+\item /videos
+\item /music
+\item /technology
+\item /nottheonion
+\item /punny
+\item /adviceatheists
+\item /youtube
+\item /radioreddit
+\item /programming
+\item /theonion
 \end{itemize}
 
 For the project rest of the semester, we plan to re-choose subreddits after a meeting with the professor. Since search allows us to search throughout reddit, we don't have to pick subreddits close to each other. 
@@ -93,7 +132,7 @@ For the project rest of the semester, we plan to re-choose subreddits after a me
 \subsection{Fetching and Storing}
 
 We then used Reddit API to retrieve the content (link submissions on hot page) from these subreddits by using an API wrapper (PRAW - python reddit api wrapper) provided for Python language. The script was executed for one hour each on four different times in the same day, to add the dimension of time in our content analysis. A MySQL database was used to store and update the tables of the content which was fetched. While data collection of top and news posts is running, in parallel, we also run a bot that looks at posts that has been collected more than 5 days in the past and we look up where have these links diffused in reddit and stores the tuple (link, sub\_reddit, poster, time\_created) into the db. 
-
+\fi
 
 \section{Data Analysis}
 
@@ -250,7 +289,7 @@ Figure 9 shows the distribution of the maximum score of the chains in our datase
 We compared our results with a related study done by Eric Gilbert who found that only around half of the popular links were noticed in the initial submission. Gilbert?s dataset was popular links from /r/pics subreddit. We found similar results when we evaluated the same figures for our dataset of 12 sub-reddits.
 
 \begin{itemize}
-\item ?Widespread Under Provision on reddit? - Eric Gilbert
+\item Widespread Under Provision on reddit -- Eric Gilbert
 	\begin{itemize}
 	\item Analyzed 9,370 popular links
 	\item 48\% links noticed on first submission
@@ -304,7 +343,7 @@ We found some posts that reddit has banned directly on API level. An online sear
 
 \subsection{Posts having chain length of 235}
 
-Post having a chain length of 235 was too good to be true. So, we checked it manually and found that it turned out to be a spam link where every-time a randomly generated unique author posted in /r/funny. It?s pretty creepy to see that someone is using the API to growth hack their website.  The domain name is expired. It doesn't make sense. A screenshot of that page is shown below:
+Post having a chain length of 235 was too good to be true. So, we checked it manually and found that it turned out to be a spam link where every-time a randomly generated unique author posted in /r/funny. It's pretty creepy to see that someone is using the API to growth hack their website.  The domain name is expired. It doesn't make sense. A screenshot of that page is shown below:
 
 \begin{figure}[h]
 \begin{center}
@@ -320,6 +359,8 @@ Post having a chain length of 235 was too good to be true. So, we checked it man
 \subsection{Exception Handling and Issues with PRAW}
 
 We just wanted to point out the difficulties that we faced in data collection. A lot of exception handling had to be done to take care of various issues to collect a dataset with a decent number of records. We had email alerts set up to notify whenever our bot found a new error. Also, the python wrapper we used to collect data had its own issues which forced us to recollect data in Phase 2.
+
+\section{Conclusion}
 
 \section{Future Work}
 
