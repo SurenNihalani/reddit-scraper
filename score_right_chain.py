@@ -3,6 +3,7 @@ import json
 from collections import Counter
 from matplotlib import pyplot
 import numpy as np
+from scipy import stats
 import csv
 
 with open('final_filtered.csv') as f:
@@ -29,7 +30,7 @@ with open('final_filtered.csv') as f:
     #x = list(lc.elements())
     #print x
     #bins = [i * 1 for i in range(10)]
-
+    print "The pearson correlation coefficient between max_score and right chain length is ",stats.pearsonr(score_list,right_chain)
     pyplot.scatter(right_chain, score_list, s=20, alpha=0.75)
     pyplot.xlabel('Right Chain Length')
     pyplot.ylabel('Score')
