@@ -167,7 +167,7 @@ An example of chains can be seen in the following figure:
 
 In this example, we have three results, the last result has the max score, so our left chain length is 2 and right chain length is 0.  Note that we don?t do normalization with respect to how many subscribers are in the subreddit.
 
-\newpage
+
 
 \subsection{Distribution of Chain Length}
 
@@ -179,7 +179,7 @@ The average chain length was found to be 1.68 with a standard deviation of 2.88.
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=3.8in]{lengths.png}
+\includegraphics[width=4.0in]{lengths.png}
 \caption{Distribution of Chain Length}
 \end{center}
 \end{figure}
@@ -188,12 +188,14 @@ The average chain length was found to be 1.68 with a standard deviation of 2.88.
 \subsection{Distribution of Original Author Re-posting}
 
 Figure 3 shows that distribution of posts by the original author. So, it basically shows the the number of times the original author is reposting his/her own link in order to broadcast it so that it becomes more popular which eventually leads to a higher karma for him/her. We observed that the maximum number of times author has reposted has gone to 12 in our dataset.
+
 The original author makes a submission more than once  ~7\% of the times. When we considered only posts that had been reposted at least once, we found that in around 28.8\% of the cases, the original author had made a submission more than once. 
+
 \begin{figure}[h]
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=3.7in]{original_author.png}
+\includegraphics[width=4.0in]{original_author.png}
 \caption{Distribution of Original Author Re-posting}
 \end{center}
 \end{figure}
@@ -209,7 +211,7 @@ It is interesting to note that ~73\% of the posts in subreddit technology were r
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=3.9in]{reposts2.png}
+\includegraphics[width=3.5in]{reposts.png}
 \caption{Distribution of Re-posts by each Subreddit}
 \end{center}
 \end{figure}
@@ -224,7 +226,7 @@ We observe that around  77.36\% of times, the reposts by different authors is mo
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=3.8in]{unique_authors.png}
+\includegraphics[width=3.5in]{unique_authors.png}
 \caption{Distribution of Different Authors Re-posting}
 \end{center}
 \end{figure}
@@ -240,7 +242,7 @@ The average left chain length was found to be 0.231 with a standard deviation of
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=3.8in]{left_chain.png}
+\includegraphics[width=3.5in]{left_chain.png}
 \caption{Distribution of Left Chain Length}
 \end{center}
 \end{figure}
@@ -254,7 +256,7 @@ The average right chain length was found to be 0.45 with a standard deviation of
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=3.7in]{right_chain.png}
+\includegraphics[width=3.5in]{right_chain.png}
 \caption{Distribution of Right Chain Length}
 \end{center}
 \end{figure}
@@ -270,7 +272,7 @@ The pearson correlation coefficient between between max score and right chain le
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=3.9in]{score_right_chain.png}
+\includegraphics[width=3.6in]{score_right_chain.png}
 \caption{Distribution of Max Score by the Right Chain Length}
 \end{center}
 \end{figure}
@@ -283,7 +285,7 @@ Figure 9 shows the distribution of the maximum score of the chains in our datase
 \begin{center}
 %\framebox[4.0in]{$\;$}
 %\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\includegraphics[width=3.8in]{max_score_distribution.png}
+\includegraphics[width=3.6in]{max_score_distribution.png}
 \caption{Distribution of Maximum Score of the chains}
 \end{center}
 \end{figure}
@@ -367,7 +369,7 @@ Post having a chain length of 235 was too good to be true. So, we checked it man
 
 We just wanted to point out the difficulties that we faced in data collection. A lot of exception handling had to be done to take care of various issues to collect a dataset with a decent number of records. We had email alerts set up to notify whenever our bot found a new error. Also, the python wrapper we used to collect data had its own issues which forced us to recollect data in Phase 2.
 
-\section{Future Work}
+\section{Conclusion and Future Work}
 In this project, we make a number of interesting observations and obtain some useful insights on content duplication in reddit. We observe that in some subreddits such as r/technology, around 73\% of the links have already been submitted before. We find that ~22\% of the posts have gained more scores(upvotes-downvotes) when they have been resubmitted. Also, we find that the chain length after a post gains popularity is around twice the chain length before a post has reached its maximum score in the chain. Although the extent of correlation isn't great, we find that correlation exists between a post's top score and the post being reposted, which suggests that popularity may be a factor in the duplication of content. However, there are some limitations. Firstly, our analysis is limited to the 12 subreddits we have considered. Though we have used both popular and smaller subreddits, the representativeness of the set to be extended to reddit in general needs to be verified. Secondly, we are limited by the reddit API to obtain any information regarding a user's list of subscribed subreddits and his likes or upvotes. Thus it becomes difficult to discern if a user reposted a link after viewing it in a subreddit, or any other source, and whether the post's score influenced him to repost the link. 
 
 One of the research questions that interests us is 'What type of users often make duplicate submissions?' Thus our future work involves studying users reposting behaviour. It would be interesting to find what \% of a user's karma is obtained purely by reposted links. Also, studying a user's reposting behaviour may help us detect spam attempts similar  to the one we detected in this project. 
