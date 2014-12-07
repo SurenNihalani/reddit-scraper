@@ -30,15 +30,22 @@ with open('final_filtered.csv') as f:
             else:
                 counts[post_subreddit]['repost'] += 1
             #lengths.append(len([item for item in line if item[0] == original_author]))
-        else:
-            counts[post_subreddit]['first'] += 1
-
+        #else:
+            #counts[post_subreddit]['first'] += 1
+    for subr in all_subreddits:
+        print "Among the posts collected for "+subr+" ",counts[subr]['first']," of them were first posts whereas ",counts[subr]['repost']," of them were reposts."
+        print "Percentage of reposts in "+subr+" = ",float(counts[subr]['repost'])/(counts[subr]['first']+counts[subr]['repost'])*100
+        print ""
     X = range(12)
     repost = []
     original = []
+    subr_list = []
     for k in counts:
         repost.append(counts[k]['repost'])
         original.append(counts[k]['first'])
+        subr_list.append(k)
+    #repost=repost[::-1]
+    #original=original[::-1]
     #print len(repost)
     #print original
     a = pyplot.bar(X, original, color = 'b', log=True)
@@ -47,11 +54,12 @@ with open('final_filtered.csv') as f:
     pyplot.xlabel('Subreddit')
     pyplot.ylabel('Number of posts')
     pyplot.title('Number of reposts by subreddit')
-    pyplot.xticks(X,all_subreddits, size='10', rotation=45)
+    #pyplot.xticks(X,all_subreddits, size='10', rotation=45)
+    pyplot.xticks(X,subr_list,size='10',rotation=45)
     pyplot.tight_layout(pad=1.2)
     #pyplot.margins(0.9)
     pyplot.legend([a[0],b[0]],['original','repost'])
-    pyplot.savefig('reposts' + '.png')
+    pyplot.savefig('reposts2' + '.png')
 
 '''
 with open('data2.csv', 'r') as f:

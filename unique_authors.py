@@ -25,6 +25,8 @@ with open('final_filtered.csv') as f:
             lengths.append(len(line))
     #print lengths
     #print uniqueAuthorsNo
+    arr=np.array(uniqueAuthorsNo)
+    print "Around ",float(len(arr[arr>0.5]))/len(arr)*100,"%% of times, the reposts by different authors is more than the same author."
     c = Counter(uniqueAuthorsNo)
 
     x = list(c.elements())

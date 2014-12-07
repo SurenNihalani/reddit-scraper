@@ -20,6 +20,8 @@ with open('final_filtered.csv') as f:
             #print original_author
             lengths.append(len([item for item in line if item[0] == original_author]))
     #print lengths
+    arr=np.array(lengths)
+    print "The original author posts more than once ",float(len(arr[arr>1]))/len(arr)*100,"%% times"
     c = Counter(lengths)
     c[1] = 0
     x = list(c.elements())

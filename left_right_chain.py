@@ -33,6 +33,13 @@ with open('final_filtered.csv') as f:
     #print x
     #bins = [i * 1 for i in range(10)]
     #print sorted(left_chain)
+
+    print "Average left chain length ",np.mean(left_chain)
+    print "Standard deviation of left chain length ",np.std(left_chain)
+    print "Average right chain length ",np.mean(right_chain)
+    print "Standard deviation of right chain length ",np.std(right_chain)
+
+
     pyplot.hist(left_chain, bins=np.arange(min(left_chain), max(left_chain) + 5, 5), facecolor='green', alpha=0.75, log=True)
     pyplot.xlabel('Left Chain Length')
     pyplot.ylabel('Count')
